@@ -17,14 +17,14 @@ app.get('/', (req, res) => {
 
 // GET all tasks
 app.get('/tasks', async (req, res) => {
-    const tasks = await prisma.task.findMany();
+    const tasks = await prisma.tasks.findMany();
     res.json(tasks);
 });
 
 //Getting one task by id
 app.get('/tasks/:id', async (req, res) => {
   const id = parseInt(req.params.id);
-  const task = await prisma.task.findUnique({
+  const task = await prisma.tasks.findUnique({
     where: { id: id }
   });
     if (task) {
@@ -38,7 +38,7 @@ app.get('/tasks/:id', async (req, res) => {
 // creating a new task
 app.post('/tasks', async (req, res) => {
     const { title, description } = req.body;
-    const newTask = await prisma.task.create({
+    const newTask = await prisma.tasks.create({
         data: {
             title: title,
             description: description,
@@ -54,7 +54,7 @@ app.put('/tasks/:id', async (req, res) => {
     const { title, description, completed } = req.body;
 
     try {
-        const updatedTask = await prisma.task.update({
+        const updatedTask = await prisma.tasks.update({
         where: { id: id },
         data: {
             title: title,
