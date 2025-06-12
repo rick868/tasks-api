@@ -11,6 +11,6 @@ model Tasks{
   id String @id @default(uuid()) @map("tasks_id")
   title String @map("tasks_title")
   description String @map("tasks_description")
-  isCompleted Boolean @default(false) @map("tasks_completed")
-  isDeleted Boolean @default(false)
+  completed Boolean @default(false) @map("tasks_completed")
+  
 }

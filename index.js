@@ -8,6 +8,8 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 
+// added the root route
+
 // GET all tasks
 app.get('/tasks', async (req, res) => {
     const tasks = await prisma.task.findMany();
