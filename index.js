@@ -9,6 +9,18 @@ const port = process.env.PORT || 4000;
 app.use(express.json());
 
 // added the root route
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Welcome to Tasks API!',
+    endpoints: {
+      'GET /tasks': 'Get all tasks',
+      'GET /tasks/:id': 'Get a specific task',
+      'POST /tasks': 'Create a new task',
+      'PUT /tasks/:id': 'Update a task',
+      'DELETE /tasks/:id': 'Delete a task'
+    }
+  });
+});
 
 // GET all tasks
 app.get('/tasks', async (req, res) => {
