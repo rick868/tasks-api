@@ -1,11 +1,12 @@
+
 const express = require('express');
+const { PrismaClient } = require('@prisma/client');
 
 const app = express();
+const prisma = new PrismaClient();
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-
-
 
 // GET all tasks
 app.get('/tasks', async (req, res) => {
@@ -43,7 +44,7 @@ app.post('/tasks', async (req, res) => {
 //updating a task
 app.put('/tasks/:id', async (req, res) => {
     const id = parseInt(req.params.id);
-    const { title, description } = req.body;
+    const { title, description, completed } = req.body;
 
     try {
         const updatedTask = await prisma.task.update({
