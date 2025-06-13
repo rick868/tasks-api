@@ -50,7 +50,7 @@ app.post('/tasks', async (req, res) => {
 //updating a task
 app.put('/tasks/:id', async (req, res) => {
     const id = parseInt(req.params.id);
-    const { title, description, completed } = req.body;
+    const { title, description } = req.body;
 
     try {
         const updatedTask = await prisma.tasks.update({
@@ -83,6 +83,7 @@ app.delete('/tasks/:id', async (req, res) => {
         res.status(404).send('Task not found');
     }
 });
+
 app.listen(port, () => {
   console.log(`Server is flying and running on port ${port}`);
 });
